@@ -1,0 +1,36 @@
+﻿@model List<LaserArt.Models.CardModel>
+@{
+    ViewBag.Title = "OrderDetails";
+}
+
+<div class="jumbotron">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ապրանք</th>
+                <th>Քանակ</th>
+                <th>Գին</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p>@item.product.ProductTitle </p>
+                        <img src="@item.product.ImageSource" class="imageHeader" />
+                    </td>
+                    <td><p>@item.ProductQuantity</p></td>
+                    <td><p>@item.product.Price դր.</p></td>
+                </tr>
+
+            }
+            <tr>
+                <td></td>
+                <td></td>
+                <td>Գումարը:@ViewBag.Amount դր.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
