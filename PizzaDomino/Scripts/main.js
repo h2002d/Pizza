@@ -25,5 +25,9 @@
 
 $(document).on('click', '.ingredientEdit', function () {
     var id = $(this).attr('id');
-
+    $('#createModule').load("/Home/EditIngredient/" + id);
+    $('.createModule').show();
 });
+function closePopup() {
+    $('.createModule').hide();
+}

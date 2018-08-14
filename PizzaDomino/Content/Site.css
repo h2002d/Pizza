@@ -41,3 +41,19 @@ height:auto;
 .mini-sales{
     margin-top:30px;
 }
+.createModule {
+    display: none;
+    max-width: 40%;
+    padding: 20px;
+    position: fixed;
+    top: 150px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    z-index: 999999999;
+    background-color: #ddd;
+}
+
+    .createModule .row a {
+        float: right;
+    }
