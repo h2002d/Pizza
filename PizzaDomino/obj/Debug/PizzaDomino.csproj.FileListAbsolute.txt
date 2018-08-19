@@ -286,3 +286,4 @@ D:\Projects\Pizza\PizzaDomino\bin\Microsoft.AI.Web.xml
 D:\Projects\Pizza\PizzaDomino\obj\Debug\PizzaDomino.csprojResolveAssemblyReference.cache
 D:\Projects\Pizza\PizzaDomino\obj\Debug\PizzaDomino.dll
 D:\Projects\Pizza\PizzaDomino\obj\Debug\PizzaDomino.pdb
+D:\Projects\Pizza\PizzaDomino\obj\Debug\PizzaDomino.csproj.CoreCompileInputs.cache

@@ -1,20 +1,20 @@
-﻿using PizzaDomino.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Web;
 
 namespace PizzaDomino.DAO
 {
-    public class GoodsDAO: DAO
+    public class SizeDAO:DAO
     {
-        internal List<Goods> getGoodById(int? id)
+        internal List<Models.Size> getSizeById(int? id)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_GetGoodById", sqlConnection))
+                using (SqlCommand command = new SqlCommand("sp_GetSizeById", sqlConnection))
                 {
                     try
                     {
@@ -26,18 +26,15 @@ namespace PizzaDomino.DAO
                             command.Parameters.AddWithValue("@Id", id);
 
                         SqlDataReader rdr = command.ExecuteReader();
-                        List<Goods> goodsList = new List<Goods>();
+                        List<Models.Size> goodsList = new List<Models.Size>();
                         while (rdr.Read())
                         {
-                            Goods good = new Goods();
-                            good.Id = Convert.ToInt32(rdr["Id"]);
-                            good.Description = rdr["Description"].ToString();
-                            good.Name = rdr["Name"].ToString();
-                            good.ImageSource = rdr["ImageSource"].ToString();
-                            good.Price = Convert.ToDecimal(rdr["Price"].ToString());
-                            good.CategoryId = Convert.ToInt32(rdr["CategoryId"]);
-
-                            goodsList.Add(good);
+                            Models.Size size = new Models.Size();
+                            size.Id = Convert.ToInt32(rdr["Id"]);
+                            size.GoodId = Convert.ToInt32(rdr["GoodId"]);
+                            size.Name = rdr["Name"].ToString();
+                            size.Price = Convert.ToDecimal(rdr["Price"].ToString());
+                            goodsList.Add(size);
                         }
                         return goodsList;
                     }
@@ -49,11 +46,11 @@ namespace PizzaDomino.DAO
             }
         }
 
-        internal List<Goods> getGoodByCategoryId(int id)
+        internal List<Models.Size> getSizeByGoodId(int? id)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_GetGoodByCategory", sqlConnection))
+                using (SqlCommand command = new SqlCommand("sp_GetSizeByGoodId", sqlConnection))
                 {
                     try
                     {
@@ -65,18 +62,15 @@ namespace PizzaDomino.DAO
                             command.Parameters.AddWithValue("@Id", id);
 
                         SqlDataReader rdr = command.ExecuteReader();
-                        List<Goods> goodsList = new List<Goods>();
+                        List<Models.Size> goodsList = new List<Models.Size>();
                         while (rdr.Read())
                         {
-                            Goods good = new Goods();
-                            good.Id = Convert.ToInt32(rdr["Id"]);
-                            good.Description = rdr["Description"].ToString();
-                            good.Name = rdr["Name"].ToString();
-                            good.Price = Convert.ToDecimal(rdr["Price"].ToString());
-                            good.CategoryId = Convert.ToInt32(rdr["CategoryId"]);
-                            good.ImageSource = rdr["ImageSource"].ToString();
-
-                            goodsList.Add(good);
+                            Models.Size size = new Models.Size();
+                            size.Id = Convert.ToInt32(rdr["Id"]);
+                            size.GoodId = Convert.ToInt32(rdr["GoodId"]);
+                            size.Name = rdr["Name"].ToString();
+                            size.Price = Convert.ToDecimal(rdr["Price"].ToString());
+                            goodsList.Add(size);
                         }
                         return goodsList;
                     }
@@ -88,25 +82,23 @@ namespace PizzaDomino.DAO
             }
         }
 
-        internal int saveGood(Goods good)
+        internal int saveSize(Models.Size size)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_CreateGoods", sqlConnection))
+                using (SqlCommand command = new SqlCommand("sp_CreateSize", sqlConnection))
                 {
                     try
                     {
                         sqlConnection.Open();
                         command.CommandType = CommandType.StoredProcedure;
-                        if (good.Id == null)
+                        if (size.Id == null)
                             command.Parameters.AddWithValue("@Id", DBNull.Value);
                         else
-                            command.Parameters.AddWithValue("@Id", good.Id);
-                        command.Parameters.AddWithValue("@Description", good.Description);
-                        command.Parameters.AddWithValue("@CategoryId", good.CategoryId);
-                        command.Parameters.AddWithValue("@ImageSource", good.ImageSource);
-                        command.Parameters.AddWithValue("@Price", good.Price);
-                        command.Parameters.AddWithValue("@Name", good.Name);
+                            command.Parameters.AddWithValue("@Id", size.Id);
+                        command.Parameters.AddWithValue("@GoodId", size.GoodId);
+                        command.Parameters.AddWithValue("@Price", size.Price);
+                        command.Parameters.AddWithValue("@Name", size.Name);
 
                         return Convert.ToInt32(command.ExecuteScalar());
                     }
@@ -118,11 +110,11 @@ namespace PizzaDomino.DAO
             }
         }
 
-        internal void deleteGood(int id)
+        internal void deleteSize(int id)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_AdminDeleteGood", sqlConnection))
+                using (SqlCommand command = new SqlCommand("sp_AdminDeleteSize", sqlConnection))
                 {
                     try
                     {
