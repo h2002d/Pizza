@@ -79,15 +79,28 @@ namespace PizzaDomino.Models
         public int? Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public int GoodId { get; set; }
+
+        static DAO.SizeDAO DAO = new PizzaDomino.DAO.SizeDAO();
+
+        public void Save()
+        {
+            DAO.saveSize(this);
+        }
+
+        public void Delete()
+        {
+            DAO.deleteSize(Convert.ToInt32(this.Id));
+        }
 
         public static List<Size> GetSizeById(int id)
         {
-            return null;
+            return DAO.getSizeById(id);
         }
 
         public static List<Size> GetSizeByGoodId(int GoodId)
         {
-            return null;
+            return DAO.getSizeByGoodId(GoodId);
         }
     }
 }

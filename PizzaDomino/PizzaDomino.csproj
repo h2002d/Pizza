@@ -196,6 +196,8 @@
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\GoodsDAO.cs" />
     <Compile Include="DAO\IngredientDAO.cs" />
+    <Compile Include="DAO\OrderDAO.cs" />
+    <Compile Include="DAO\SizeDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +206,7 @@
     <Compile Include="Models\Goods.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
