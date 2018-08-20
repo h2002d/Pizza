@@ -31,3 +31,28 @@ $(document).on('click', '.ingredientEdit', function () {
 function closePopup() {
     $('.createModule').hide();
 }
+function OnSuccess(data) {
+    alert();
+    //location.reload();
+}
+$(document).ready(function () {
+    $('#sbmt-ingredient').click(function () {
+        alert();
+        $("#form0").submit(function (e) {
+            var form = $('#form0');
+            var url = form.attr('action');
+            alert();
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: form.serialize(), // serializes the form's elements.
+                success: function (data) {
+                    alert(data); // show response from the php script.
+                }
+            });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+        $("#form0").submit();
+    });
+});

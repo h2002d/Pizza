@@ -18,9 +18,9 @@ namespace PizzaDomino.Models
 
         static DAO.GoodsDAO DAO = new PizzaDomino.DAO.GoodsDAO();
         #endregion
-        public void Save()
+        public int Save()
         {
-            DAO.saveGood(this);
+            return DAO.saveGood(this);
         }
 
         public List<Ingredients> Ingredients
@@ -48,7 +48,7 @@ namespace PizzaDomino.Models
     {
         public int? IngredientId { get; set; }
         public int GoodId { get; set; }
-        public string Name { get; set; }
+        public string IngredientName { get; set; }
         public decimal Price { get; set; }
 
         static DAO.IngredientDAO DAO = new PizzaDomino.DAO.IngredientDAO();
@@ -56,6 +56,11 @@ namespace PizzaDomino.Models
         public void Save()
         {
             DAO.saveIngredient(this);
+        }
+
+        public void Delete()
+        {
+            DAO.deleteIngredient(Convert.ToInt32(this.IngredientId));
         }
 
         public static List<Ingredients> GetIngredientsById(int id)

@@ -118,7 +118,7 @@ namespace PizzaDomino.DAO
             }
         }
 
-        internal void deleteCharity(int id)
+        internal void deleteGood(int id)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {

@@ -31,13 +31,16 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CategoryId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.CategoryId,
+                                         new SelectList(ViewBag.Categories,
+                                                   "Id", "Name"),
+                                                    "--Select category--",
+                                        new { @class = "form-control", @required = "required" })
                 @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -45,7 +48,6 @@
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -53,13 +55,11 @@
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-
         @if (Model.Id != null)
         {
             <div class="form-group">
@@ -68,7 +68,7 @@
                 @foreach (var ingredient in Model.Ingredients)
                 {
                     <div>
-                        @ingredient.Name <input type="button" id="@ingredient.IngredientId" value="Edit" class="ingredientEdit" />
+                        @ingredient.IngredientName <input type="button" id="@ingredient.IngredientId" value="Edit" class="ingredientEdit" />
                     </div>
                 }
             </div>

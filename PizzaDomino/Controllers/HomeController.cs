@@ -11,6 +11,7 @@ namespace PizzaDomino.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -32,12 +33,14 @@ namespace PizzaDomino.Controllers
 
         public ActionResult CreateGood()
         {
+            ViewBag.Categories = Category.GetCategoryById(null);
             var good = new Goods();
             return View(good);
         }
 
         public ActionResult EditGood(int id)
         {
+            ViewBag.Categories = Category.GetCategoryById(null);
             Goods good = Goods.GetGoodById(id).First();
             return View("CreateGood", good);
         }
@@ -45,11 +48,11 @@ namespace PizzaDomino.Controllers
         [HttpPost]
         public ActionResult CreateGood(Goods newGood)
         {
-            newGood.Save();
+            int id = newGood.Save();
 
             // file is uploaded
-         
-            return RedirectToAction(Request.UrlReferrer.ToString().Replace("CreateGood","EditGood"));
+
+            return RedirectToAction("EditGood", new { id = id });
         }
 
         [HttpPost]
@@ -94,10 +97,41 @@ namespace PizzaDomino.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateIngredient(Ingredients newIngredient)
+        public JsonResult CreateIngredient(Ingredients newIngredient)
         {
             newIngredient.Save();
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public JsonResult DeleteTemplate(int id)
+        {
+            Ingredients ingredient = Ingredients.GetIngredientsById(id).FirstOrDefault();
+            ingredient.Delete();
+            return null;
+        }
+        #endregion
+
+        #region Category
+        public ActionResult CreateCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult CreateCategory(Category newCategory)
+        {
+            newCategory.Save();
             return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult DeleteCategory(int id)
+        {
+            Category category = Category.GetCategoryById(id).FirstOrDefault();
+            category.Delete();
+            return RedirectToAction("Index");
+        }
+        public ActionResult EditCategory(int id)
+        {
+            return View("CreateCategory", new { id = id });
         }
         #endregion
     }

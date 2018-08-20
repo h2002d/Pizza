@@ -24,7 +24,7 @@ namespace PizzaDomino.DAO
                             command.Parameters.AddWithValue("@Id", ingredients.IngredientId);
                         command.Parameters.AddWithValue("@GoodId", ingredients.GoodId);
                         command.Parameters.AddWithValue("@Price", ingredients.Price);
-                        command.Parameters.AddWithValue("@Name", ingredients.Name);
+                        command.Parameters.AddWithValue("@Name", ingredients.IngredientName);
                         return Convert.ToInt32(command.ExecuteScalar());
                     }
                     catch (Exception ex)
@@ -56,7 +56,7 @@ namespace PizzaDomino.DAO
                         {
                             Ingredients ingredient = new Ingredients();
                             ingredient.IngredientId = Convert.ToInt32(rdr["Id"]);
-                            ingredient.Name = rdr["Name"].ToString();
+                            ingredient.IngredientName = rdr["Name"].ToString();
                             ingredient.Price = Convert.ToDecimal(rdr["Price"].ToString());
                             ingredient.GoodId = Convert.ToInt32(rdr["GoodId"]);
 
@@ -71,7 +71,7 @@ namespace PizzaDomino.DAO
                 }
             }
         }
-
+        
         internal List<Ingredients> getIngredientByGoodId(int goodId)
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
@@ -91,13 +91,35 @@ namespace PizzaDomino.DAO
                         {
                             Ingredients ingredient = new Ingredients();
                             ingredient.IngredientId = Convert.ToInt32(rdr["Id"]);
-                            ingredient.Name = rdr["Name"].ToString();
+                            ingredient.IngredientName = rdr["Name"].ToString();
                             ingredient.Price = Convert.ToDecimal(rdr["Price"].ToString());
                             ingredient.GoodId = Convert.ToInt32(rdr["GoodId"]);
 
                             ingredientsList.Add(ingredient);
                         }
                         return ingredientsList;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        internal void deleteIngredient(int v)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand("sp_DeleteIngredient", sqlConnection))
+                {
+                    try
+                    {
+                        sqlConnection.Open();
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@Id", v);
+                        //command.Parameters.AddWithValue("@DateBirth", user.DateBirth);
+                        command.ExecuteNonQuery();
                     }
                     catch (Exception ex)
                     {
