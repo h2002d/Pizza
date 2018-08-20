@@ -30,6 +30,12 @@ namespace PizzaDomino.Controllers
         }
 
         #region Goods action
+        
+        public ActionResult Good(int id)
+        {
+            var good = Goods.GetGoodById(id);
+            return View(good);
+        }
 
         public ActionResult CreateGood()
         {
