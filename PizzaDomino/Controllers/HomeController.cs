@@ -11,8 +11,8 @@ namespace PizzaDomino.Controllers
     {
         public ActionResult Index()
         {
-
-            return View();
+            var category = Category.GetCategoryById(null);
+            return View(category);
         }
 
         public ActionResult About()
@@ -65,9 +65,8 @@ namespace PizzaDomino.Controllers
                 {
                     file = System.Web.HttpContext.Current.Request.Files["HttpPostedFileBase"];
                 }
-                string stamp = string.Format("{0:yyyy-MM-dd_hh-mm-ss-tt}", DateTime.Now);
-                string filename = file.FileName.Split('.')[0] + stamp + "." + file.FileName.Split('.')[1];
-                string pic = System.IO.Path.GetFileName(filename);
+               
+                string pic = System.IO.Path.GetFileName(file.FileName);
                 string path = System.IO.Path.Combine(
                                        Server.MapPath("~/Images/Goods"), pic);
                 file.SaveAs(path);

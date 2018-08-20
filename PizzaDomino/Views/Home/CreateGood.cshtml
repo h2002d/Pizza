@@ -7,10 +7,10 @@
 <h2>CreateGood</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("CreateGood","Home",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model=> model.Id)
     <div class="form-horizontal">
         <h4>Goods</h4>
         <hr />
@@ -60,22 +60,23 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
-        @if (Model.Id != null)
-        {
-            <div class="form-group">
-            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @foreach (var ingredient in Model.Ingredients)
-                {
-                    <div>
-                        @ingredient.IngredientName <input type="button" id="@ingredient.IngredientId" value="Edit" class="ingredientEdit" />
-                    </div>
-                }
-            </div>
-        </div>
-        @Html.Action("CreateIngredient", new { goodId = Model.Id })
-        }
+
     </div>
+}
+@if (Model.Id != null)
+{
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @foreach (var ingredient in Model.Ingredients)
+                {
+                <div>
+                    @ingredient.IngredientName <input type="button" id="@ingredient.IngredientId" value="Edit" class="ingredientEdit" />
+                </div>
+            }
+        </div>
+    </div>
+    @Html.Action("CreateIngredient", new { goodId = Model.Id })
 }
 <div class="createModule">
     <div class="row"><a onclick="closePopup()">X</a></div>

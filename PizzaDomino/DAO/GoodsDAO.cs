@@ -53,7 +53,7 @@ namespace PizzaDomino.DAO
         {
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
-                using (SqlCommand command = new SqlCommand("sp_GetGoodByCategory", sqlConnection))
+                using (SqlCommand command = new SqlCommand("sp_GetGoodByCategoryId", sqlConnection))
                 {
                     try
                     {

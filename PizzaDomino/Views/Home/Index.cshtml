@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<PizzaDomino.Models.Category>
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -25,67 +26,23 @@
     </div>
 </div>
 <div class="row row_main">
-    <div class="cont_main">
-        <div class="cont_main_text">NEW YORKER RANGE</div>
-        <div> <a href="#">FIND OUT MORE <i class="glyphicon glyphicon-play"></i></a></div>
-    </div>
 
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div> THE BIG CHEESE</div>
-            <div>10080kj^</div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
+    @foreach (var item in Model)
+    {
+        <div class="cont_main">
+            <div class="cont_main_text">@item.Name</div>
+            <div> <a href="#">FIND OUT MORE <i class="glyphicon glyphicon-play"></i></a></div>
         </div>
-    </div>
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div>  THE BIG PEPPERONI</div>
-            <div>10800kj^</div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
-        </div>
-    </div>
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div> THE BIG HAM & PINAPPLE</div>
-            <div>9600kj^</div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
-        </div>
-    </div>
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div> THE BIG HAM & SAUSAGE</div>
-            <div>11040kj^</div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
-        </div>
-    </div>
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div> THE BIG HAM & SAUSAGE & MUSHROOM</div>
-            <div>10720kj^</div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
-        </div>
-    </div>
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div> THE BIG THREE MEATS</div>
-            <div>11600kj^</div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
-        </div>
-    </div>
-    <div class="col-sm-3 p-div">
-        <div class="col_img"> <img class="sale-banner" src="~/Images/61bt1h71IiL._SS500_.jpg" /></div>
-        <div class="col_text">
-            <div> NEW YOURKER HALF N' HALF</div>
-            <div></div>
-            <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
-        </div>
-    </div>
-
-
+        foreach (var good in item.Goods)
+        {
+            <div class="col-sm-3 p-div">
+                <div class="col_img"> <img class="sale-banner" src="@good.ImageSource" /></div>
+                <div class="col_text">
+                    <div>@good.Name.ToUpper()</div>
+                    <div>@good.Price $</div>
+                    <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
+                </div>
+            </div>
+        }
+    }
 </div>

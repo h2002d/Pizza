@@ -4,7 +4,7 @@
     var files = $(this).parent().find(".uploadEditorImage").get(0).files;
     if (files.length > 0) {
         data.append("HttpPostedFileBase", files[0]);
-        $(this).parent().find('.image').val('/images/lots/' + files[0].name)
+        $(this).parent().find('.image').val('/images/Goods/' + files[0].name)
     }
     //.val('/images/' + files[0].name);
     $.ajax({
@@ -14,6 +14,7 @@
         contentType: false,
         data: data,
         success: function (response) {
+           // $(this).parent().find('.image').val('/images/lots/'+response);
             alert('Image was successfully uploaded');
         },
         error: function (er) {
@@ -32,27 +33,8 @@ function closePopup() {
     $('.createModule').hide();
 }
 function OnSuccess(data) {
-    alert();
-    //location.reload();
+  location.reload();
 }
 $(document).ready(function () {
-    $('#sbmt-ingredient').click(function () {
-        alert();
-        $("#form0").submit(function (e) {
-            var form = $('#form0');
-            var url = form.attr('action');
-            alert();
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: form.serialize(), // serializes the form's elements.
-                success: function (data) {
-                    alert(data); // show response from the php script.
-                }
-            });
-
-            e.preventDefault(); // avoid to execute the actual submit of the form.
-        });
-        $("#form0").submit();
-    });
+    
 });

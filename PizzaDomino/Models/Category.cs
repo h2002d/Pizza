@@ -9,11 +9,19 @@ namespace PizzaDomino.Models
     {
         public int? Id { get; set; }
         public string Name { get; set; }
+        private bool hasGoods;
+        private List<Goods> goods;
         public List<Goods> Goods
         {
             get
             {
-                return Models.Goods.GetGoodsByCategoryId(Convert.ToInt32(Id));
+                if (hasGoods)
+                    return goods;
+                else
+                {
+                    hasGoods = true;
+                    return Models.Goods.GetGoodsByCategoryId(Convert.ToInt32(Id));
+                }
             }
         }
 
