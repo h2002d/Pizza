@@ -35,6 +35,7 @@
         </div>
         foreach (var good in item.Goods)
         {
+        <a href="/Home/Good/@good.Id">
             <div class="col-sm-3 p-div">
                 <div class="col_img"> <img class="sale-banner" src="@good.ImageSource" /></div>
                 <div class="col_text">
@@ -43,6 +44,7 @@
                     <button class="btn btn-danger">ORDER NOW <i id="glyp" class="glyphicon glyphicon-play"></i></button>
                 </div>
             </div>
+        </a>
         }
     }
 </div>

@@ -30,7 +30,7 @@ namespace PizzaDomino.DAO
                         while (rdr.Read())
                         {
                             Models.Size size = new Models.Size();
-                            size.Id = Convert.ToInt32(rdr["Id"]);
+                            size.SizeId = Convert.ToInt32(rdr["Id"]);
                             size.GoodId = Convert.ToInt32(rdr["GoodId"]);
                             size.Name = rdr["Name"].ToString();
                             size.Price = Convert.ToDecimal(rdr["Price"].ToString());
@@ -66,7 +66,7 @@ namespace PizzaDomino.DAO
                         while (rdr.Read())
                         {
                             Models.Size size = new Models.Size();
-                            size.Id = Convert.ToInt32(rdr["Id"]);
+                            size.SizeId = Convert.ToInt32(rdr["Id"]);
                             size.GoodId = Convert.ToInt32(rdr["GoodId"]);
                             size.Name = rdr["Name"].ToString();
                             size.Price = Convert.ToDecimal(rdr["Price"].ToString());
@@ -92,10 +92,10 @@ namespace PizzaDomino.DAO
                     {
                         sqlConnection.Open();
                         command.CommandType = CommandType.StoredProcedure;
-                        if (size.Id == null)
+                        if (size.SizeId == null)
                             command.Parameters.AddWithValue("@Id", DBNull.Value);
                         else
-                            command.Parameters.AddWithValue("@Id", size.Id);
+                            command.Parameters.AddWithValue("@Id", size.SizeId);
                         command.Parameters.AddWithValue("@GoodId", size.GoodId);
                         command.Parameters.AddWithValue("@Price", size.Price);
                         command.Parameters.AddWithValue("@Name", size.Name);

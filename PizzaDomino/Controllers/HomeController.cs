@@ -33,7 +33,7 @@ namespace PizzaDomino.Controllers
         
         public ActionResult Good(int id)
         {
-            var good = Goods.GetGoodById(id);
+            var good = Goods.GetGoodById(id).FirstOrDefault();
             return View(good);
         }
 
@@ -113,6 +113,36 @@ namespace PizzaDomino.Controllers
             Ingredients ingredient = Ingredients.GetIngredientsById(id).FirstOrDefault();
             ingredient.Delete();
             return null;
+        }
+        #endregion
+
+        #region Size
+
+        public PartialViewResult CreateSize(int goodId)
+        {
+            var size = new Size();
+            size.GoodId = goodId;
+            return PartialView(size);
+        }
+
+        [HttpPost]
+        public JsonResult CreateSize(Size size)
+        {
+            size.Save();
+            return Json("Ok", JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteSize(int id)
+        {
+            Size size = Size.GetSizeById(id).FirstOrDefault();
+            size.Delete();
+            return null;
+        }
+        public ActionResult EditSize(int id)
+        {
+            Size size = Size.GetSizeById(id).FirstOrDefault();
+            return View("CreateSize", size);
         }
         #endregion
 

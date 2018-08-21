@@ -1,0 +1,53 @@
+﻿@model PizzaDomino.Models.Goods
+
+@{
+    ViewBag.Title = "Good";
+}
+
+<h2>Good</h2>
+
+<div>
+    <h4>Goods</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageSource)
+        </dd>
+
+    </dl>
+    @foreach (var ingredient in Model.Ingredients)
+    {
+        <input type="checkbox" name="ingredient" value="@ingredient.IngredientId" />@ingredient.IngredientName
+    }
+    @foreach (var size in Model.Sizes)
+    {
+        <input type="checkbox" name="size" value="@size.SizeId" />@size.Name
+    }
+    <input type="button" value="ORDER" onclick="" />
+</div>
+5421
+001570464

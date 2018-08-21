@@ -5,10 +5,10 @@
 }
 
 <h2>CreateGood</h2>
-@using (Html.BeginForm("CreateGood","Home",FormMethod.Post))
+@using (Html.BeginForm("CreateGood", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model=> model.Id)
+    @Html.HiddenFor(model => model.Id)
     <div class="form-horizontal">
         <h4>Goods</h4>
         <hr />
@@ -64,17 +64,31 @@
 @if (Model.Id != null)
 {
     <div class="form-group">
-        @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Ingredients, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @foreach (var ingredient in Model.Ingredients)
-                {
+            {
                 <div>
-                    @ingredient.IngredientName <input type="button" id="@ingredient.IngredientId" value="Edit" class="ingredientEdit" />
+                    @ingredient.IngredientName <input type="button" id="@ingredient.IngredientId" value="Edit" class="ingredientEdit btn btn-info" /><input type="button" id="@ingredient.IngredientId" value="Delete" class="ingredientDelete btn btn-danger" />
                 </div>
             }
         </div>
     </div>
     @Html.Action("CreateIngredient", new { goodId = Model.Id })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Sizes, htmlAttributes: new { @class = "control-label col-md-2" })
+
+        <div class="col-md-10">
+            @foreach (var size in Model.Sizes)
+            {
+                <div>
+                    @size.Name <input type="button" id="@size.SizeId"  value="Edit" class="sizeEdit btn btn-info" /><input type="button" id="@size.SizeId" value="Delete" class="sizeDelete btn btn-danger" />
+                </div>
+            }
+        </div>
+    </div>
+    @Html.Action("CreateSize", new { goodId = Model.Id })
 }
 <div class="createModule">
     <div class="row"><a onclick="closePopup()">X</a></div>

@@ -279,6 +279,9 @@
     <Content Include="Views\Home\CreateIngredient.cshtml" />
     <Content Include="Views\Home\EditIngredient.cshtml" />
     <Content Include="Views\Home\CreateCategory.cshtml" />
+    <Content Include="Views\Home\Good.cshtml" />
+    <Content Include="Views\Home\CreateSize.cshtml" />
+    <Content Include="Views\Home\EditSize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

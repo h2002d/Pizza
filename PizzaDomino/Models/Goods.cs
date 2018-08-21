@@ -76,7 +76,7 @@ namespace PizzaDomino.Models
 
     public class Size
     {
-        public int? Id { get; set; }
+        public int? SizeId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int GoodId { get; set; }
@@ -90,7 +90,7 @@ namespace PizzaDomino.Models
 
         public void Delete()
         {
-            DAO.deleteSize(Convert.ToInt32(this.Id));
+            DAO.deleteSize(Convert.ToInt32(this.SizeId));
         }
 
         public static List<Size> GetSizeById(int id)

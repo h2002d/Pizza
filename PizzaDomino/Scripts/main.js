@@ -29,6 +29,40 @@ $(document).on('click', '.ingredientEdit', function () {
     $('#createModule').load("/Home/EditIngredient/" + id);
     $('.createModule').show();
 });
+$(document).on('click', '.sizeEdit', function () {
+    var id = $(this).attr('id');
+    $('#createModule').load("/Home/EditSize/" + id);
+    $('.createModule').show();
+});
+$(document).on('click', '.ingredientDelete', function () {
+    var id = $(this).attr('id');
+    $.ajax({
+        url: "/Home/DeleteTemplate/" + id,
+        type: "POST",
+        success: function (response) {
+            location.reload();
+        },
+        error: function (er) {
+            alert(er.responseText);
+        }
+
+    });
+});
+$(document).on('click', '.sizeDelete', function () {
+    var id = $(this).attr('id');
+    $.ajax({
+        url: "/Home/DeleteSize/"+id,
+        type: "POST",
+        success: function (response) {
+            location.reload();
+        },
+        error: function (er) {
+            alert(er.responseText);
+        }
+
+    });
+});
+
 function closePopup() {
     $('.createModule').hide();
 }
