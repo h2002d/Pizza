@@ -109,6 +109,10 @@ height:auto;
     margin-left: 81px;
 }
 
+.main-good-img{
+    width:100%;
+}
+
 .text-or {
     font-style: italic;
     color: grey;

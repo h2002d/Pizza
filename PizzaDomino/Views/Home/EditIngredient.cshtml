@@ -1,12 +1,12 @@
 ﻿@model PizzaDomino.Models.Ingredients
-@{ 
+@{
     Layout = null;
 }
 
 @using (Html.BeginForm("CreateIngredient", "Home", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(model => model.Id)
     <div class="form-horizontal">
         <h4>Ingredients</h4>
         <hr />
@@ -32,7 +32,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
-                <input type="button" value="Delete" onclick="deleteIngredient(@Model.IngredientId)" class="btn btn-danger" /> 
+                <input type="button" value="Delete" onclick="deleteIngredient(@Model.IngredientId)" class="btn btn-danger" />
             </div>
         </div>
     </div>

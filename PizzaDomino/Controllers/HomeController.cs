@@ -169,5 +169,16 @@ namespace PizzaDomino.Controllers
             return View("CreateCategory", new { id = id });
         }
         #endregion
+
+        public ActionResult PreOrderDetail()
+        {
+
+            return View();
+        }
+        public ActionResult OrderDetail()
+        {
+
+            return View();
+        }
     }
 }

@@ -4,50 +4,115 @@
     ViewBag.Title = "Good";
 }
 
-<h2>Good</h2>
+<style>
 
-<div>
-    <h4>Goods</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImageSource)
-        </dd>
-
-    </dl>
-    @foreach (var ingredient in Model.Ingredients)
-    {
-        <input type="checkbox" name="ingredient" value="@ingredient.IngredientId" />@ingredient.IngredientName
+    body {
+        background: url('https://apf.attachmail.ru/cgi-bin/readmsg/baked-beer-cheese-724216.jpg?id=15349416790000000987%3B0%3B1&x-email=lilitkarapetyan1996%40mail.ru&exif=1&rid=384446617268890505620858826633149784623')no-repeat center center;
+        background-size: cover;
     }
-    @foreach (var size in Model.Sizes)
-    {
-        <input type="checkbox" name="size" value="@size.SizeId" />@size.Name
+
+    h3 {
+        display: inline;
+        color: white;
     }
-    <input type="button" value="ORDER" onclick="" />
+
+    .div-main {
+        border-radius: 20px;
+        background-color: black;
+        opacity: 0.9;
+        height: 500px;
+    }
+
+    h1 {
+        color: #ffac00;
+        /*color:forestgreen;*/
+    }
+
+    .span-color {
+        color: white;
+        display: inline;
+    }
+
+    #num {
+        width: 50px;
+        height: 40px;
+        border-radius: 5px;
+        font-size: 23px;
+        text-align: center;
+    }
+
+    #price-view {
+        font-size: 23px;
+    }
+
+    #input-radio {
+        margin-left: 64px;
+    }
+
+    .but {
+        font-size: 15px;
+        width: 100px;
+        height: 40px;
+        border-radius: 5px;
+        /*background-color:#d23e2b;*/
+        /*opacity:1;*/
+        background-color: #ffac00;
+        border: none;
+        font-weight: bold;
+        color: white;
+    }
+    .but-add {
+        background-color: white;
+        color:black;
+    }
+</style>
+<div class="container-fuild">
+    <div class="row div-main">
+        <div class="col-lg-5">
+            <img class="main-good-img" src="@Model.ImageSource" />
+
+        </div>
+        <div class="col-lg-7">
+            <h1>@Model.Name</h1><br>
+            <div>
+                <h3> @Html.DisplayNameFor(model => model.Description) :</h3>
+                <span>
+                    @Model.Description
+                </span>
+            </div><br />
+            <div>
+                <h3> Ingredients :</h3>
+                <span>
+
+                    @foreach (var ingredient in Model.Ingredients)
+                    {
+                    <label> <input type="checkbox" name="ingredient" value="@ingredient.Price" />@ingredient.IngredientName @(ingredient.Price) $</label>
+                    }
+
+                </span>
+            </div><br />
+            <div>
+                <h3>Size :</h3>
+                @foreach (var size in Model.Sizes)
+                {
+                    <input type="radio" value="@size.Price" class="radio-button" name="big" /><span>@size.Name @size.Price $</span>
+                }
+            </div>
+            <div>
+                <h4 class="span-color">Quantity :</h4>
+                <input type="number" id="num" min="1" value="1" />
+            </div>
+            <div>
+                <h4 class="span-color">Price :</h4>
+                <span id="price-view"> @Model.Price </span>
+            </div>
+
+            <div>
+                <button class="but but-add btn">Add to cart</button>
+                <button class="but btn">Order now</button>
+            </div>
+
+
+        </div>
+    </div>
 </div>
-5421
-001570464

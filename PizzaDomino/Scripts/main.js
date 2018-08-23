@@ -48,6 +48,7 @@ $(document).on('click', '.ingredientDelete', function () {
 
     });
 });
+
 $(document).on('click', '.sizeDelete', function () {
     var id = $(this).attr('id');
     $.ajax({
@@ -72,3 +73,32 @@ function OnSuccess(data) {
 $(document).ready(function () {
     
 });
+window.onload = function () {
+    let num = document.getElementById("num");
+    let size = document.querySelectorAll(".radio-button");
+    let view = document.getElementById('price-view');
+
+
+    var n; 
+    let s;
+    var priceview;
+    //console.log(typeof( priceview));
+    num.addEventListener('change', addprice2);
+
+    for (let i = 0; i < size.length; i++) {
+        size[i].addEventListener('change', addprice);
+    }
+
+    function addprice() {
+       
+        priceview = parseFloat( this.value);
+        n = parseFloat(num.value);
+        console.log(n);
+        view.innerHTML = priceview * n;
+    }
+    function addprice2() {
+        n = parseFloat(num.value);
+        n *= priceview;
+        view.innerHTML = n;
+    }
+}

@@ -282,6 +282,8 @@
     <Content Include="Views\Home\Good.cshtml" />
     <Content Include="Views\Home\CreateSize.cshtml" />
     <Content Include="Views\Home\EditSize.cshtml" />
+    <Content Include="Views\Home\PreOrderDetail.cshtml" />
+    <Content Include="Views\Home\OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

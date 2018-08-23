@@ -6,7 +6,7 @@
 @using (Ajax.BeginForm("CreateIngredient", "Home", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess" }))
 {
     @Html.AntiForgeryToken()
-    @*@Html.HiddenFor(model => model.Id)*@
+    
     <div class="form-horizontal">
         <h4>Ingredients</h4>
         <hr />
